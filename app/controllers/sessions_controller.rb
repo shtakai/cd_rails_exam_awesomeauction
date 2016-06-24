@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:destroy]
 
   def new
     @user = User.new
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       logger.debug "logged in #{@user.id}"
       flash[:notice] = "Welcome #{@user.username}"
       session[:user_id] = @user.id
-      fail
+      redirect_to auctions_path
     else
       logger.debug "login failed"
       flash[:alert] = "Login Failed"

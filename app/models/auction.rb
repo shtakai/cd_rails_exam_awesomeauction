@@ -1,4 +1,6 @@
 class Auction < ActiveRecord::Base
+  paginates_per 20
+
   validates :product_name, presence: true,
                   length: {in: 8..20}
   validates :description, presence: true
