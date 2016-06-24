@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true,
       format: { with: EMAIL_REGEX }
 
+  has_many :auctions, dependent: :delete_all
   has_many :bids, dependent: :delete_all
   has_one :wallet, dependent: :destroy
 
