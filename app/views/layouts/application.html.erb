@@ -8,6 +8,15 @@
 </head>
 <body>
 
+  <% if flash[:alert].present? %>
+    <%= flash[:alert] %>
+  <% end %>
+  <% if flash[:notice].present? %>
+    <%= flash[:notice] %>
+  <% end %>
+  <% if session[:user_id].present? %>
+    <%= link_to 'Logout', '/session', method: :delete %>
+  <% end %>
 <%= yield %>
 
 </body>
