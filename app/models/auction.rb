@@ -9,6 +9,7 @@ class Auction < ActiveRecord::Base
 
   validate :check_end_date
 
+  has_many :bids, dependent: :delete_all
 
   private
 

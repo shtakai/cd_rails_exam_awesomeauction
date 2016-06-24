@@ -15,6 +15,16 @@ class User < ActiveRecord::Base
   validates :email, presence: true,
       format: { with: EMAIL_REGEX }
 
+  has_many :bids, dependent: :delete_all
+  has_one :wallet, dependent: :destroy
 
+  before_create :create_wallet
+
+  private
+
+  def create_wallet
+    wallet = Wallet.create balance: 0
+    self.wallet = wallet
+  end
 
 end
