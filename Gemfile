@@ -33,6 +33,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 
 gem 'kaminari'
+gem 'ransack'
 
 
 group :development, :test do
