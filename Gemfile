@@ -35,6 +35,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'kaminari'
 gem 'ransack'
+gem 'grape'
+gem 'awesome_print'
 
 
 group :development, :test do
