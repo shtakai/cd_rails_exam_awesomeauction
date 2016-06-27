@@ -3,7 +3,8 @@ class Bid < ActiveRecord::Base
   belongs_to :auction
 
   validate :avoid_own_bid
-  validate :price, uniqueness: true
+  validate :highest_price
+  validates :price, uniqueness: true
 
   private
 
@@ -12,4 +13,11 @@ class Bid < ActiveRecord::Base
       errors.add(:bids, "cannot bid own auction")
     end
   end
+
+  def highest_price
+    if auction.present? && auction.highest_bid.present? && auction.highest_bid.price > price
+      errors.add(:bids, "cannot bid lower price of the highest_bid")
+    end
+  end
+
 end
