@@ -9,7 +9,7 @@ class BidsController < ApplicationController
 
   def create
     auction = Auction.find_by id: params[:auction_id]
-    @bid = auction.bids.new(price: params[:bid][:price])
+    @bid = auction.bids.new(price: params[:bid][:price], user_id: current_user_id)
     if @bid.save
       flash[:notice] = "Bid the auction #{@bid.auction.product_name} by $#{@bid.price}"
       logger.debug flash[:notice]
