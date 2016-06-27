@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="auction_product_name">
+    <%= @auction.product_name %>
+  </div>
+  <div class="auction_user">
+    <%= @auction.user.full_name %>
+  </div>
+  <div class="auction_description">
+    <%= @auction.description %>
+  </div>
+  <div class="highest">
+
+    <% if @auction.highest_bid %>
+      <%= @auction.highest_bid.price %>
+      <%= @auction.highest_bid%>
+      <%= @auction.highest_bid.user.full_name %>
+      <% else %>
+        no bids
+      <% end %>
+  </div>
+</div>
