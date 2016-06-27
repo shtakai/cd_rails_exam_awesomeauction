@@ -15,7 +15,7 @@ class Bid < ActiveRecord::Base
   end
 
   def highest_price
-    if auction.present? && auction.highest_bid.present? && auction.highest_bid.price > price
+    if auction.present? && auction.highest_bid.present? && auction.highest_bid[:user].present? && auction.highest_bid.price > price
       errors.add(:bids, "cannot bid lower price of the highest_bid")
     end
   end
