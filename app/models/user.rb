@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
 
   before_create :create_wallet
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def create_wallet
