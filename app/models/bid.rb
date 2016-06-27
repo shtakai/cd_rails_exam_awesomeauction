@@ -3,6 +3,7 @@ class Bid < ActiveRecord::Base
   belongs_to :auction
 
   validate :avoid_own_bid
+  validate :price, uniqueness: true
 
   private
 
