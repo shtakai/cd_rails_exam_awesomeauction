@@ -81,7 +81,7 @@ end
 
 ap ('user created')
 # bids
-1000.times do
+50.times do
   u = User.find_by id: User.pluck(:id).sample
   a = Auction.find_by id: Auction.pluck(:id).sample
 
