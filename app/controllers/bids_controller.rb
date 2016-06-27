@@ -3,16 +3,22 @@ class BidsController < ApplicationController
 
 
   def new
-    @auction = Auction.find_by id: params[:id]
-    if @auction.blank?
-      logger.debug "Auction not found #{params[:id]}"
-      redirect_to '/auctions'
-    end
-    @bid = Bid.new
-    logger.debug @auction
+    auction = Auction.find_by id: params[:auction_id]
+    @bid = auction.bids.new
   end
 
   def create
+    auction = Auction.find_by id: params[:auction_id]
+    @bid = auction.bids.new(price: params[:bid][:price])
+    if @bid.save
+      flash[:notice] = "Bid the auction #{@bid.auction.product_name} by $#{@bid.price}"
+      logger.debug flash[:notice]
+    else
+      flash[:alert] = "Failed Bid :#{@bid.auction.product_name} "
+      logger.debug flash[:alert]
+    end
+
+    redirect_to auction_path @bid.auction
 
   end
 
