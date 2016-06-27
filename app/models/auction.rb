@@ -14,6 +14,8 @@ class Auction < ActiveRecord::Base
   belongs_to :user
   has_many :bids, dependent: :delete_all
 
+  scope :running, -> { where("end_date > ?", Time.current)}
+
   private
 
   def check_end_date
