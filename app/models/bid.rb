@@ -2,9 +2,9 @@ class Bid < ActiveRecord::Base
   belongs_to :user
   belongs_to :auction
 
-  validate :avoid_own_bid
   validate :highest_price
-  validates :price, uniqueness: true
+  validates :price, presence: true, uniqueness: true, numericality: {greater_than: 0}
+  validate :avoid_own_bid
 
   private
 
@@ -15,7 +15,10 @@ class Bid < ActiveRecord::Base
   end
 
   def highest_price
-    if auction.present? && auction.highest_bid.present? && auction.highest_bid[:user].present? && auction.highest_bid.price > price
+    # NOTE: Nil checking of price is in validates ->presence
+    #   so, just return when price is blank
+    return if price.blank?
+    if auction.present? && auction.highest_bid.price > price
       errors.add(:bids, "cannot bid lower price of the highest_bid")
     end
   end
