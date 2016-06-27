@@ -16,6 +16,12 @@ class Auction < ActiveRecord::Base
 
   scope :running, -> { where("end_date > ?", Time.current)}
 
+  def highest_bid
+    bids.order(price: :desc).limit(1).last
+  end
+
+
+
   private
 
   def check_end_date
