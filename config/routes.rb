@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root 'sessions#new'
   resource :session, only: [:new, :create, :destroy]
   resources :users, only: [:create]
-  resources :auctions, only: [:index]
+  resources :auctions, only: [:index, :destroy]
+  resources :bids, only: [:destroy]
+  post 'bids/:id' =>  'bids#new', as: :new_bid
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
