@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160624043636) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "auctions", force: :cascade do |t|
     t.string   "product_name"
     t.text     "description"
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20160624043636) do
     t.integer  "user_id"
   end
 
-  add_index "auctions", ["user_id"], name: "index_auctions_on_user_id"
+  add_index "auctions", ["user_id"], name: "index_auctions_on_user_id", using: :btree
 
   create_table "bids", force: :cascade do |t|
     t.decimal  "price"
@@ -34,8 +37,8 @@ ActiveRecord::Schema.define(version: 20160624043636) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "bids", ["auction_id"], name: "index_bids_on_auction_id"
-  add_index "bids", ["user_id"], name: "index_bids_on_user_id"
+  add_index "bids", ["auction_id"], name: "index_bids_on_auction_id", using: :btree
+  add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -54,6 +57,9 @@ ActiveRecord::Schema.define(version: 20160624043636) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "wallets", ["user_id"], name: "index_wallets_on_user_id"
+  add_index "wallets", ["user_id"], name: "index_wallets_on_user_id", using: :btree
 
+  add_foreign_key "bids", "auctions"
+  add_foreign_key "bids", "users"
+  add_foreign_key "wallets", "users"
 end
