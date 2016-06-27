@@ -2,6 +2,7 @@ class Bid < ActiveRecord::Base
   belongs_to :user
   belongs_to :auction
 
+  validates :user_id, :auction_id, presence: true
 
   validate :highest_price
   validates :price, presence: true, uniqueness: true, numericality: {greater_than: 0}
