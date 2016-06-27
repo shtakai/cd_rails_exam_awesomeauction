@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Seller</th>
+      <th>Top Bid</th>
+      <th>Time Remaining</th>
+      <th>Bid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% auctions.each do |auction| %>
+      <tr>
+        <td><%= auction.product_name %></td>
+        <td><%= auction.user.full_name %></td>
+        <td></td>
+        <td><%= time_ago_in_words auction.end_date %></td>
+        <td><%= auction.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
