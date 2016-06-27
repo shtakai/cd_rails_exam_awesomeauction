@@ -37,6 +37,7 @@ gem 'kaminari'
 gem 'ransack'
 gem 'grape'
 gem 'awesome_print'
+gem 'simple_form'
 
 
 group :development, :test do
@@ -55,6 +56,7 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
+  gem 'quiet_assets'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'thin'

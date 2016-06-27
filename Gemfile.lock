@@ -140,6 +140,8 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.4)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -188,6 +190,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_form (3.2.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     slop (3.6.0)
     spring (1.7.1)
     sprockets (3.6.2)
@@ -244,10 +249,12 @@ DEPENDENCIES
   pry-coolline
   pry-rails
   pry-stack_explorer
+  quiet_assets
   rails (= 4.2.6)
   ransack
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simple_form
   spring
   thin
   tty-spinner
