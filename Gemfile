@@ -50,6 +50,8 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'hirb'
   gem 'hirb-unicode'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
