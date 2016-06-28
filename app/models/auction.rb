@@ -22,7 +22,7 @@ class Auction < ActiveRecord::Base
       bids: {
         user_id: user_id
       }
-    ).order(
+    ).uniq.order(
       end_date: :asc
     )
   }
