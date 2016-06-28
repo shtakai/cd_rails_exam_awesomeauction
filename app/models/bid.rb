@@ -22,7 +22,7 @@ class Bid < ActiveRecord::Base
     # NOTE: Nil checking of price is in validates ->presence
     #   so, just return when price is blank
     return if price.blank?
-    if auction.present? && auction.highest_bid.price > price
+    if auction.present? && auction.highest_bid.present? && auction.highest_bid.price > price
       errors.add(:bids, "cannot bid lower price of the highest_bid")
     end
   end
@@ -31,7 +31,7 @@ class Bid < ActiveRecord::Base
     # checks last (highest ) bid was made by own?
     # NOTE: But, in concurrency, this case occurs in controller
     #   so, implement same function in controller
-    if auction.present? && auction.highest_bid[:user].present?
+    if auction.present? && auction.highest_bid.present? && auction.highest_bid[:user].present?
       logger.debug "BID USER: #{auction.highest_bid[:user].id}"
       logger.debug " user_id for creation; #{user_id}"
       if auction.highest_bid[:user].id == user_id
