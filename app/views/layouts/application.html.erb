@@ -17,7 +17,7 @@
   <% if session[:user_id].present? %>
     <%= link_to 'Auction List', '/auctions' %>
     <%= link_to 'Create Auction', new_auction_path %>
-    <%= link_to 'Topup Wallet', wallet_path %>
+    <%= link_to 'Topup Wallet', wallet_topup_new_path %>
     <%= link_to 'Logout', '/session', method: :delete %>
   <% end %>
 <%= yield %>
