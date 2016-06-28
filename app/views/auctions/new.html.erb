@@ -1,0 +1,12 @@
+<div class="container">
+  <%= @auction.end_date %>
+  <%= simple_form_for @auction do |f| %>
+    <%= f.input :product_name %>
+    <%= f.input :description %>
+    <%= f.input :starting_bid %>
+    <%= f.input :reserve_price %>
+    <%= f.input :end_date %>
+    <%= f.button :submit, 'Create Auction' %>
+  <% end %>
+
+</div>

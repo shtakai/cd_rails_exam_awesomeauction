@@ -1,3 +1,14 @@
 <div class="container">
   <h1>auction algorithm </h1>
+  <ul>
+    <li><%= auction.id %></li>
+    <li><%= auction.product_name %></li>
+    <li><%= auction.description %></li>
+    <li><%= auction.starting_bid %></li>
+    <li><%= auction.reserve_price %></li>
+    <li><%= time_ago_in_words auction.end_date %></li>
+    <li><%= auction.highest_price %></li>
+    <li><%= auction.highest_bidder %></li>
+  </ul>
+  <%= render partial: 'partial/bids', locals: {bids: auction.bids} %>
 </div>
