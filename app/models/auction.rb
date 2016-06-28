@@ -14,7 +14,21 @@ class Auction < ActiveRecord::Base
   belongs_to :user
   has_many :bids, dependent: :delete_all
 
-  scope :running, -> { where("end_date > ?", Time.current)}
+  scope :running, -> { where("end_date > ?", Time.current).order(:end_date)}
+
+  def highest_bid
+    bids.order(price: :desc).limit(1).last
+  end
+
+
+  def destroy_with_user user_id
+    return self.destroy if owner? user_id
+    false
+  end
+
+  def owner? user_id
+    self.user_id == user_id
+  end
 
   private
 

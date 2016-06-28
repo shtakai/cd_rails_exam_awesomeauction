@@ -37,20 +37,28 @@ gem 'kaminari'
 gem 'ransack'
 gem 'grape'
 gem 'awesome_print'
+gem 'simple_form'
 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'pry-byebug'
   gem 'faker'
-  gem 'ruby-progressbar'
+  gem 'tty-spinner'
+  gem 'pry-rails'
+  gem 'pry-coolline'
+  gem 'pry-stack_explorer'
+  gem 'hirb'
+  gem 'hirb-unicode'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
-  gem 'pry-rails'
+  gem 'quiet_assets'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'thin'
