@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624043636) do
+ActiveRecord::Schema.define(version: 20160628032401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 20160624043636) do
   add_index "bids", ["auction_id"], name: "index_bids_on_auction_id", using: :btree
   add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
 
+  create_table "topups", force: :cascade do |t|
+    t.decimal  "amount"
+    t.integer  "wallet_id"
+    t.text     "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "topups", ["wallet_id"], name: "index_topups_on_wallet_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "first_name"
@@ -61,5 +71,6 @@ ActiveRecord::Schema.define(version: 20160624043636) do
 
   add_foreign_key "bids", "auctions"
   add_foreign_key "bids", "users"
+  add_foreign_key "topups", "wallets"
   add_foreign_key "wallets", "users"
 end
