@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>bids</h2>
+  <table>
+    <thead>
+      <tr>
+        <td>Bid Time</td>
+        <td>Bidder</td>
+        <td>Price</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% bids.each do |bid| %>
+        <tr>
+          <td><%= bid.created_at %></td>
+          <td><%= bid.user.full_name %></td>
+          <td><%= bid.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
