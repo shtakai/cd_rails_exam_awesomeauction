@@ -8,6 +8,7 @@ class Bid < ActiveRecord::Base
   validates :price, presence: true, uniqueness: true, numericality: {greater_than: 0}
   validate :avoid_own_bid
   validate :avoid_highest_own_bid
+  validate :avoid_over_wallet
 
   private
 
@@ -28,12 +29,21 @@ class Bid < ActiveRecord::Base
 
   def avoid_highest_own_bid
     # checks last (highest ) bid was made by own?
+    # NOTE: But, in concurrency, this case occurs in controller
+    #   so, implement same function in controller
     if auction.present? && auction.highest_bid[:user].present?
       logger.debug "BID USER: #{auction.highest_bid[:user].id}"
       logger.debug " user_id for creation; #{user_id}"
       if auction.highest_bid[:user].id == user_id
         errors.add(:bids, "cannot bid over own highest bid")
       end
+    end
+  end
+
+  def avoid_over_wallet
+    # checks when bid price is lower than wallet's amount
+    if user.present? && user.wallet.balance < price
+      errors.add(:bids, "cannot bid over own wallet's balance")
     end
   end
 
