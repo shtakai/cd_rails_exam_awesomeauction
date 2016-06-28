@@ -5,5 +5,6 @@
 <div class="container">
   <h2>Auctions</h2>
   <%= render partial: 'auction_list', locals: {auctions: @auctions}%>
+  <%= paginate @auctions %>
 </div>
 

@@ -11,7 +11,7 @@
   <tbody>
     <% auctions.each do |auction| %>
       <tr>
-        <td><%= auction.product_name %></td>
+        <td><%= link_to auction.product_name, auction %></td>
         <td><%= auction.user.full_name %></td>
         <td><%= auction.highest_price %></td>
         <td>

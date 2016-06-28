@@ -51,7 +51,8 @@ class Auction < ActiveRecord::Base
 
   def biddable? user_id
     return false if owner? user_id
-    highest_bid.present? && highest_bid.user_id != user_id
+    return false if highest_bid.present? && highest_bid.user_id == user_id
+    true
   end
 
   def finished?
