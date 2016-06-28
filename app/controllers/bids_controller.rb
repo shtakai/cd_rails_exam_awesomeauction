@@ -10,14 +10,14 @@ class BidsController < ApplicationController
   def create
     auction = Auction.find_by id: params[:auction_id]
     @bid = auction.bids.new(price: params[:bid][:price], user_id: current_user_id)
-    savable? = false
+    savable = false
     wallet = current_user.wallet
     if wallet.balance > @bid.price
-      savable? = true
+      savable = true
       logger.debug "bid created: price:#{@bid.price} balance:#{wallet.balance}"
     end
 
-    if savable? and @bid.save
+    if savable and @bid.save
       flash[:notice] = "Bid the auction #{@bid.auction.product_name} by $#{@bid.price}"
       logger.debug flash[:notice]
     else
