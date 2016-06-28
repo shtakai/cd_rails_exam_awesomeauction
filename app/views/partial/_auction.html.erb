@@ -1,5 +1,15 @@
 <div class="container">
   <h1>auction algorithm </h1>
+  <% if auction.finished? %>
+    <div class="finished">
+      <h2>This Auction is finished.</h2>
+      <p>Highest Bidder is... <%=auction.highest_bidder%></p>
+    </div>
+  <% end %>
+  <% if auction.finished? && auction.highest_bid[:user_id].present? && auction.highest_bid[:user_id] == session[:user_id] %>
+    <h1>You are the highest bidder!</h1>
+    <h2>Pay money or die!</h2>
+  <% end %>
   <ul>
     <li><%= auction.id %></li>
     <li><%= auction.product_name %></li>
