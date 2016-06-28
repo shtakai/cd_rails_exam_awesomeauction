@@ -54,6 +54,11 @@ class Auction < ActiveRecord::Base
     highest_bid.present? && highest_bid.user_id != user_id
   end
 
+  def finished?
+    end_date < Time.current
+  end
+
+
   private
 
   def check_end_date
