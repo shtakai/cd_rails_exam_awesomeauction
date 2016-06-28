@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :bids
   end
   resource :topups, only: [:new, :create]
+
+  mount API => '/'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -36,6 +36,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
 gem 'ransack'
 gem 'grape'
+gem 'grape-jbuilder'
+gem 'hashie-forbidden_attributes'
 gem 'awesome_print'
 gem 'simple_form'
 
