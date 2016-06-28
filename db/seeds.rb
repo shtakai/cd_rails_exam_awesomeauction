@@ -13,7 +13,8 @@ Auction.destroy_all
 Wallet.destroy_all
 Bid.destroy_all
 
-spinner = TTY::Spinner.new("[:spinner] Loading ...", format: :pulse_2)
+#spinner = TTY::Spinner.new("[:spinner] Loading ...", format: :pulse_2)
+spinner = TTY::Spinner.new("[:spinner] Loading ...", format: :classic)
 spinner.start
 
 
@@ -26,6 +27,8 @@ test_user_1 = User.create(
   password: 'testtest',
   password_confirmation: 'testtest'
 )
+test_user_1.wallet.balance = 1000000
+test_user_1.wallet.save
 spinner.spin
 
 # 1st user
@@ -37,10 +40,12 @@ test_user_2 = User.create(
   password: 'testtest',
   password_confirmation: 'testtest'
 )
+test_user_2.wallet.balance = 1000000
+test_user_2.wallet.save
 spinner.spin
 # 1st user has some auctions
 5.times do
-  a = Auction.create(
+  Auction.create(
     product_name: Faker::Commerce.product_name[0..18],
     description: Faker::Hipster.sentence,
     starting_bid: 10,
@@ -53,7 +58,7 @@ end
 
 # 2nd user has some auctions
 5.times do
-  a = Auction.create(
+  Auction.create(
     product_name: Faker::Commerce.product_name[0..18],
     description: Faker::Hipster.sentence,
     starting_bid: 10,
@@ -76,21 +81,41 @@ ap ('initial end')
     password: p,
     password_confirmation: p
   )
+  if u.present? && u.wallet.present?
+    u.wallet.balance = 100000
+    u.wallet.save
+  end
   spinner.spin
 end
 
 ap ('user created')
+
+# auction create
+1000.times do
+  u = User.find_by id: User.pluck(:id).sample
+  Auction.create(
+    product_name: Faker::Commerce.product_name[0..18],
+    description: Faker::Hipster.sentence,
+    starting_bid: 10,
+    reserve_price: rand(100..5000),
+    end_date: Faker::Date.forward(100),
+    user: u
+  )
+end
+
 # bids
-50.times do
+1000.times do
   u = User.find_by id: User.pluck(:id).sample
   a = Auction.find_by id: Auction.pluck(:id).sample
 
   ###
   price = a.highest_bid.present? ? a.highest_bid.price : a.starting_bid
-  b = Bid.create(
-    user: u,
-    auction: a,
-    price: (price + rand(1000..2000000)/100.00).floor(2)
-  )
+  if price
+    Bid.create(
+      user: u,
+      auction: a,
+      price: (price + rand(100..200000)/100.00).floor(2)
+    )
+  end
   spinner.spin
 end
