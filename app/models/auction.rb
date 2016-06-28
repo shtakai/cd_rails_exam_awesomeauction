@@ -16,6 +16,17 @@ class Auction < ActiveRecord::Base
   # bids are ordered by price
   has_many :bids, -> { order(price: :desc) } , dependent: :delete_all
   scope :running, -> { where("end_date > ?", Time.current).order(:end_date)}
+  scope :own,
+    ->(user_id) {
+    joins(:bids).where(
+      bids: {
+        user_id: user_id
+      }
+    ).order(
+      end_date: :asc
+    )
+  }
+
 
   def highest_bid
     bids.order(price: :desc).limit(1).last
