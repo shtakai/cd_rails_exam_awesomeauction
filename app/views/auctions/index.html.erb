@@ -1,10 +1,15 @@
 <div class="container">
   <h2>Auctions You Bidded</h2>
-  <%= render partial: 'auction_list', locals: {auctions: @bidded_auctions}%>
+  <%= render partial: 'auction_list', locals: {auctions: @bidded_auctions, search:false}%>
 </div>
 <div class="container">
   <h2>Auctions</h2>
-  <%= render partial: 'auction_list', locals: {auctions: @auctions}%>
+  <%= search_form_for @q do |f| %>
+    <%= f.label :product_name_cont, 'Product Name' %>
+    <%= f.search_field :product_name_cont %>
+    <%= f.submit 'Search' %>
+  <%end%>
+  <%= render partial: 'auction_list', locals: {auctions: @auctions, search: true}%>
   <%= paginate @auctions %>
 </div>
 

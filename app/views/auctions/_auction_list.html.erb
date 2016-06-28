@@ -1,17 +1,31 @@
 <table>
   <thead>
     <tr>
+      <% if search %>
+      <th><%= sort_link @q, :product_name, 'Product Name'%></th>
+      <th>Seller</th>
+      <th>Top Bid</th>
+      <th><%= sort_link @q, :end_date, 'Time Remaining' %></th>
+      <th>Bid</th>
+      <% else %>
       <th>Product</th>
       <th>Seller</th>
       <th>Top Bid</th>
       <th>Time Remaining</th>
       <th>Bid</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
     <% auctions.each do |auction| %>
       <tr>
-        <td><%= link_to auction.product_name, auction %></td>
+        <td>
+          <% if auction.biddable? session[:user_id] %>
+            <%= link_to auction.product_name, new_auction_bid_path(auction) %>
+          <% else %>
+            <%= link_to auction.product_name, auction %>
+          <% end %>
+        </td>
         <td><%= auction.user.full_name %></td>
         <td><%= auction.highest_price %></td>
         <td>
