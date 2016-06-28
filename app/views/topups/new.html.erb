@@ -1,0 +1,8 @@
+<div class="container">
+  <h2>Topup wallet</h2>
+  <div>Wallet balance: <%= @balance %></div>
+  <%= simple_form_for @topup do |f| %>
+    <%= f.input :amount %>
+    <%= f.button :submit, 'TOPUP' %>
+  <% end %>
+</div>

@@ -10,11 +10,18 @@ class BidsController < ApplicationController
   def create
     auction = Auction.find_by id: params[:auction_id]
     @bid = auction.bids.new(price: params[:bid][:price], user_id: current_user_id)
-    if @bid.save
+    savable? = false
+    wallet = current_user.wallet
+    if wallet.balance > @bid.price
+      savable? = true
+      logger.debug "bid created: price:#{@bid.price} balance:#{wallet.balance}"
+    end
+
+    if savable? and @bid.save
       flash[:notice] = "Bid the auction #{@bid.auction.product_name} by $#{@bid.price}"
       logger.debug flash[:notice]
     else
-      flash[:alert] = "Failed Bid :#{@bid.auction.product_name} "
+      flash[:alert] = "Failed Bid creation:#{@bid.auction.product_name} "
       logger.debug flash[:alert]
     end
 

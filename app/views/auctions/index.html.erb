@@ -1,4 +1,8 @@
 <div class="container">
+  <h2>Auctions You Bidded</h2>
+  <%= render partial: 'auction_list', locals: {auctions: @bidded_auctions}%>
+</div>
+<div class="container">
   <h2>Auctions</h2>
   <%= render partial: 'auction_list', locals: {auctions: @auctions}%>
 </div>

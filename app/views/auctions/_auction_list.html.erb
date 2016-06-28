@@ -14,14 +14,24 @@
         <td><%= auction.product_name %></td>
         <td><%= auction.user.full_name %></td>
         <td><%= auction.highest_price %></td>
-        <td><%= time_ago_in_words auction.end_date %></td>
         <td>
-          <%= auction.user_id %>
-          <%= session[:user_id] %>
-          <% if auction.owner? session[:user_id] %>
+          <% if auction.finished? %>
+            finished
+          <% else %>
+            <%= time_ago_in_words auction.end_date %>
+          <% end %>
+        </td>
+        <td>
+          <% if auction.finished? %>
+            <%= link_to 'Result', auction %>
+          <% elsif auction.owner? session[:user_id] %>
             <%= link_to 'Delete', auction, method: :delete %>
           <% else %>
-            <%= link_to 'Bid', new_auction_bid_path(auction) %>
+            <% if auction.biddable? session[:user_id] %>
+              <%= link_to 'Bid', new_auction_bid_path(auction) %>
+            <% else %>
+              Highest bidder.
+            <% end %>
           <% end %>
         </td>
       </tr>
