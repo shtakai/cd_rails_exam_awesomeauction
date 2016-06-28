@@ -1,5 +1,4 @@
 <div class="container">
-  <h1>auction algorithm </h1>
   <% if auction.finished? %>
     <div class="finished">
       <h2>This Auction is finished.</h2>
@@ -11,14 +10,13 @@
     <h2>Pay money or die!</h2>
   <% end %>
   <ul>
-    <li><%= auction.id %></li>
-    <li><%= auction.product_name %></li>
-    <li><%= auction.description %></li>
-    <li><%= auction.starting_bid %></li>
-    <li><%= auction.reserve_price %></li>
-    <li><%= time_ago_in_words auction.end_date %></li>
-    <li><%= auction.highest_price %></li>
-    <li><%= auction.highest_bidder %></li>
+    <li>ID:<%= auction.id %></li>
+    <li>Product Name:<%= auction.product_name %></li>
+    <li>Description:<%= auction.description %></li>
+    <li>Starting:<%= auction.starting_bid %></li>
+    <li>Ending:<%= time_ago_in_words auction.end_date %></li>
+    <li>Price:<%= auction.highest_price %></li>
+    <li>Bidder:<%= auction.highest_bidder %></li>
   </ul>
   <%= render partial: 'partial/bids', locals: {bids: auction.bids} %>
 </div>

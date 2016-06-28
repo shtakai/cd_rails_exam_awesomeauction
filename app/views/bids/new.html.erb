@@ -1,31 +1,9 @@
 <div class="container">
-  <div class="auction_product_name">
-    <%= @bid.auction.product_name %>
-  </div>
-  <div class="auction_user">
-    Created by:
-    <%= @bid.auction.user.full_name %>
-  </div>
-  <div class="remaining">
-    Time Remaining:
-    <%= time_ago_in_words @bid.auction.end_date %>
-  </div>
-  <div class="auction_description">
-    <%= @bid.auction.description %>
-  </div>
-  <div class="highest">
-    Current Highest Bid. <%= @bid.auction.highest_bid.price %>
-    <div class="user">
-      <% if @bid.auction.highest_bid %>
-        <%= @bid.auction.highest_bid.user.full_name %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="bid">
-    <%= simple_form_for @bid, url: "/auctions/#{@bid.auction_id}/bids"  do |f| %>
-      <%= f.input :price, placeholder: "Your bid goes here..." %>
-      <%= f.button :submit, 'Bid!'%>
-    <% end %>
-  </div>
+<div class="bid">
+  <%= simple_form_for @bid, url: "/auctions/#{@bid.auction_id}/bids"  do |f| %>
+    <%= f.input :price, placeholder: "Your bid goes here..." %>
+    <%= f.button :submit, 'Bid!'%>
+  <% end %>
+</div>
+  <%= render partial: 'partial/auction', locals: {auction: @bid.auction} %>
 </div>
