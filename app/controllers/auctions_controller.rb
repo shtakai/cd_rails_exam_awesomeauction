@@ -2,7 +2,9 @@ class AuctionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @auctions = Auction.running.page params[:page]
+    @q = Auction.search params[:q]
+    @auctions = @q.result
+    @auctions = @auctions.running.page params[:page]
     @bidded_auctions = Auction.own current_user_id
   end
 
