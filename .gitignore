@@ -18,3 +18,4 @@
 /config/secrets.yml
 .env
 .byebug*
+/vendor/assets/bower_components
