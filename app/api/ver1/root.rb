@@ -1,14 +1,14 @@
-  module Ver1
+module Ver1
 
-    class Root < Grape::API
-      version 'v1', using: :path
-      format :json
+  class Root < Grape::API
+    version 'v1', using: :path
+    format :json
+    formatter :json, Grape::Formatter::Jbuilder
 
-      get :now do
-        #{ time: Time.current.strftime('%Y%m%d') }
-        Auction.all
-      end
+    get '/auctions', jbuilder: 'auctions/index' do
+      @auctions = Auction.all
     end
-
   end
+
+end
 
