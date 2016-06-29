@@ -39,7 +39,9 @@ gem 'grape'
 gem 'grape-jbuilder'
 gem 'hashie-forbidden_attributes'
 gem 'awesome_print'
+gem 'bower-rails'
 gem 'simple_form'
+#gem 'simple_form-materialize', git: 'https://github.com/patricklindsay/simple_form-materialize'
 
 
 group :development, :test do
