@@ -52,6 +52,7 @@ class Auction < ActiveRecord::Base
   def biddable? user_id
     return false if owner? user_id
     return false if highest_bid.present? && highest_bid.user_id == user_id
+    return false if finished?
     true
   end
 
@@ -59,6 +60,9 @@ class Auction < ActiveRecord::Base
     end_date < Time.current
   end
 
+  def status
+    finished? ? 'finished' : 'running'
+  end
 
   private
 

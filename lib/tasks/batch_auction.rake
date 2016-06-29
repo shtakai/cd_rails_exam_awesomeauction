@@ -5,7 +5,7 @@ namespace :batch_auction do
       spinner = TTY::Spinner.new("[:spinner] Loading ...", format: :classic)
       spinner.start
       user = User.find_by id: (User.pluck(:id).sample)
-      auction = Auction.delay.create(
+      Auction.delay.create(
         product_name: Faker::Commerce.product_name[0..19],
         description: Faker::Hacker.say_something_smart,
         starting_bid: 1.00,

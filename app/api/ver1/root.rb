@@ -5,8 +5,22 @@ module Ver1
     format :json
     formatter :json, Grape::Formatter::Jbuilder
 
-    get '/auctions', jbuilder: 'auctions/index' do
-      @auctions = Auction.all
+
+    resource :auctions do
+      desc 'get running auctions'
+      get jbuilder: 'auctions/index' do
+        @auctions = Auction.running
+      end
+
+      desc 'get one auction with bids'
+      params do
+        requires :id, type: Integer, desc: 'auction id'
+      end
+      route_param :id do
+        get jbuilder: 'auctions/auction' do
+          @auction = Auction.find_by id: params[:id]
+        end
+      end
     end
   end
 

@@ -11,7 +11,7 @@ namespace :batch_bid do
         Bid.delay.create(
           user: user,
           auction: auction,
-          price: (price + rand(100..10000)/100.00)
+          price: (price + rand(100..10000)/100.00).to_i
         )
         sleep 1/300
       end
