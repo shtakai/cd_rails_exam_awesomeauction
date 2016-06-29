@@ -12,4 +12,17 @@
  *
  *= require_tree .
  *= require_self
+ *= require materialize
+ *= require datetimepicker
  */
+
+
+@import url('https://fonts.googleapis.com/css?family=Crete+Round|Kdam+Thmor|Pridi');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+* {
+
+font-family: 'Pridi', serif;
+/*font-family: 'Kdam Thmor', cursive;*/
+font-family: 'Crete Round', serif;
+   }

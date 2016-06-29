@@ -17,6 +17,8 @@ Bundler.require(*Rails.groups)
 Dotenv::Railtie.load
 DB_USERNAME = ENV['DB_USERNAME']
 DB_PASSWORD = ENV['DB_PASSWORD']
+SIDEKIQ_URL = ENV['SIDEKIQ_URL']
+SIDEKIQ_NAMESPACE = ENV['SIDEKIQ_NAMESPACE']
 
 module AwesomeAuction
   class Application < Rails::Application

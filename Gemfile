@@ -39,8 +39,13 @@ gem 'grape'
 gem 'grape-jbuilder'
 gem 'hashie-forbidden_attributes'
 gem 'awesome_print'
+gem 'bower-rails'
 gem 'simple_form'
-
+#gem 'simple_form-materialize', git: 'https://github.com/patricklindsay/simple_form-materialize'
+gem 'sidekiq'
+gem 'redis-namespace'
+gem 'sinatra', require: false
+gem 'whenever', require: true
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

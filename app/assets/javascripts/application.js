@@ -12,5 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require materialize
+//= require datetimepicker
 //= require turbolinks
 //= require_tree .
+//
+$(document).ready(function(){
+  $('input#auction_end_date').datetimepicker();
+});
