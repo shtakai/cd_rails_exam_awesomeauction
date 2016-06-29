@@ -59,6 +59,9 @@ class Auction < ActiveRecord::Base
     end_date < Time.current
   end
 
+  def status
+    finished? ? 'finished' : 'running'
+  end
 
   private
 
