@@ -43,6 +43,7 @@ gem 'bower-rails'
 gem 'simple_form'
 #gem 'simple_form-materialize', git: 'https://github.com/patricklindsay/simple_form-materialize'
 gem 'sidekiq'
+gem 'redis-namespace'
 gem 'sinatra', require: false
 
 group :development, :test do
