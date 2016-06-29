@@ -2,6 +2,8 @@
   "name": "dsl-generated dependencies",
   "dependencies": {
     "materialize": "latest",
-    "datetimepicker": "latest"
+    "datetimepicker": "latest",
+    "font-awesome": "latest",
+    "material-design-icons": "latest"
   }
 }
