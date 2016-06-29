@@ -1,27 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>AwesomeAuction</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>AwesomeAuction</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">อ-เวไ</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <% if session[:user_id].present? %>
+            <li>
+              <%= link_to 'Auction', '/auctions' %>
+            </li>
+            <li>
+              <%= link_to 'Create Auction', new_auction_path %>
+            </li>
+            <li>
+              Wallet: $ <%= @balance %>
+            <%= link_to 'Topup', new_topups_path %>
+            </li>
+            <li>
+              <%= link_to 'Logout', '/session', method: :delete %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to 'Login/Register', new_session_path %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+    <% if flash[:alert].present? %>
+      <%= flash[:alert] %>
+    <% end %>
+    <% if flash[:notice].present? %>
+      <%= flash[:notice] %>
+    <% end %>
+    <%= yield %>
 
-  <% if flash[:alert].present? %>
-    <%= flash[:alert] %>
-  <% end %>
-  <% if flash[:notice].present? %>
-    <%= flash[:notice] %>
-  <% end %>
-  <% if session[:user_id].present? %>
-    <%= link_to 'Auction List', '/auctions' %>
-    <%= link_to 'Create Auction', new_auction_path %>
-    <p>Wallet balance: $ <%= @balance %></p>
-    <%= link_to 'Topup Wallet', new_topups_path %>
-    <%= link_to 'Logout', '/session', method: :delete %>
-  <% end %>
-<%= yield %>
-
-</body>
+  </body>
 </html>
