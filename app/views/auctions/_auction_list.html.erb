@@ -1,4 +1,4 @@
-<table>
+<table class="striped highlight responsive-table">
   <thead>
     <tr>
       <% if search %>
@@ -30,21 +30,25 @@
         <td><%= auction.highest_price %></td>
         <td>
           <% if auction.finished? %>
-            finished
+            <span class="green-text">
+              finished
+            </span>
           <% else %>
             <%= time_ago_in_words auction.end_date %>
           <% end %>
         </td>
         <td>
           <% if auction.finished? %>
-            <%= link_to 'Result', auction %>
+            <%= link_to 'Result', auction, class: 'green-text' %>
           <% elsif auction.owner? session[:user_id] %>
-            <%= link_to 'Delete', auction, method: :delete %>
+            <%= link_to 'Delete', auction, method: :delete, class: 'yellow red-text' %>
           <% else %>
             <% if auction.biddable? session[:user_id] %>
               <%= link_to 'Bid', new_auction_bid_path(auction) %>
             <% else %>
-              Highest bidder.
+              <span class="red-text">
+                Highest bidder.
+              </span>
             <% end %>
           <% end %>
         </td>
