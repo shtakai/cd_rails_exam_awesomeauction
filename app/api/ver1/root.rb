@@ -11,6 +11,16 @@ module Ver1
       get jbuilder: 'auctions/index' do
         @auctions = Auction.running
       end
+
+      desc 'get one auction with bids'
+      params do
+        requires :id, type: Integer, desc: 'auction id'
+      end
+      route_param :id do
+        get jbuilder: 'auctions/auction' do
+          @auction = Auction.find_by id: params[:id]
+        end
+      end
     end
   end
 
