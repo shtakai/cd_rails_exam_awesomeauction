@@ -5,7 +5,7 @@
     <%= f.input :description %>
     <%= f.input :starting_bid %>
     <%= f.input :reserve_price %>
-    <%= f.input :end_date %>
+    <%= f.input :end_date, as: :string, html: {class: :datetimepicker} %>
     <%= f.button :submit, 'Create Auction' %>
   <% end %>
 
