@@ -5,8 +5,12 @@ module Ver1
     format :json
     formatter :json, Grape::Formatter::Jbuilder
 
-    get '/auctions', jbuilder: 'auctions/index' do
-      @auctions = Auction.running
+
+    resource :auctions do
+      desc 'get running auctions'
+      get jbuilder: 'auctions/index' do
+        @auctions = Auction.running
+      end
     end
   end
 
