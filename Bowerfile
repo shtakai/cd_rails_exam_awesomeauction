@@ -4,5 +4,3 @@
 # asset 'bootstrap'
 asset 'materialize'
 asset 'datetimepicker'
-asset 'font-awesome'
-asset 'material-design-icons'
