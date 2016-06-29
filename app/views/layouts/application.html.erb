@@ -34,10 +34,14 @@
       </div>
     </nav>
     <% if flash[:alert].present? %>
-      <%= flash[:alert] %>
+      <div class="card blue-gray red-text">
+        <%= flash[:alert] %>
+      </div>
     <% end %>
     <% if flash[:notice].present? %>
-      <%= flash[:notice] %>
+      <div class="card green-gray white-text">
+        <%= flash[:notice] %>
+      </div>
     <% end %>
     <%= yield %>
 
