@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   end
   resource :topups, only: [:new, :create]
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   mount API => '/'
 
   # The priority is based upon order of creation: first created -> highest priority.
