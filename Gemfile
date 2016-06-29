@@ -42,7 +42,8 @@ gem 'awesome_print'
 gem 'bower-rails'
 gem 'simple_form'
 #gem 'simple_form-materialize', git: 'https://github.com/patricklindsay/simple_form-materialize'
-
+gem 'sidekiq'
+gem 'sinatra', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
