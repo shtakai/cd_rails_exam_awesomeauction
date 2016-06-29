@@ -6,7 +6,7 @@ module Ver1
     formatter :json, Grape::Formatter::Jbuilder
 
     get '/auctions', jbuilder: 'auctions/index' do
-      @auctions = Auction.all
+      @auctions = Auction.running
     end
   end
 
