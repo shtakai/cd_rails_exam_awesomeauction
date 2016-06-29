@@ -19,3 +19,5 @@
 .env
 .byebug*
 /vendor/assets/bower_components
+public/assets/**
+
