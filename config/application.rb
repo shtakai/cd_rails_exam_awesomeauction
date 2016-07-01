@@ -41,5 +41,12 @@ module AwesomeAuction
     config.middleware.use(Rack::Config) do |env|
       env['api.tilt.root'] = Rails.root.join 'app', 'views', 'api'
     end
+config.middleware.use Rack::Cors do
+    allow do
+      origins '*'
+      # location of your API
+      resource '/api/*', :headers => :any, :methods => [:get, :post, :options, :put]
+    end
+end
   end
 end

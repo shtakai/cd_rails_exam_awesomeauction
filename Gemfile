@@ -46,6 +46,8 @@ gem 'sidekiq'
 gem 'redis-namespace'
 gem 'sinatra', require: false
 gem 'whenever', require: true
+gem 'rack-jsonp-middleware'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

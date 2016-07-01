@@ -160,6 +160,9 @@ GEM
     rack (1.6.4)
     rack-accept (0.4.5)
       rack (>= 0.4)
+    rack-cors (0.4.0)
+    rack-jsonp-middleware (0.0.10)
+      rack
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -288,6 +291,8 @@ DEPENDENCIES
   pry-rails
   pry-stack_explorer
   quiet_assets
+  rack-cors
+  rack-jsonp-middleware
   rails (= 4.2.6)
   ransack
   redis-namespace
