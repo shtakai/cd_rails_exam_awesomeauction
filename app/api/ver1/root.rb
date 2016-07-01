@@ -5,12 +5,8 @@ module Ver1
     format :json
     formatter :json, Grape::Formatter::Jbuilder
 
-    use Rack::JSONP
 
     resource :auctions do
-      get 'test' do
-        "#{params[:callback]}({'test':1})"
-      end
 
       desc 'get running auctions'
       get jbuilder: 'auctions/index' do
